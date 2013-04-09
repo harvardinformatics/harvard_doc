@@ -1,9 +1,9 @@
 from django.conf.urls.defaults import patterns, url, include
 
-urlpatterns = patterns('billing_record.views',
+urlpatterns = patterns('harvard_doc.views',
    #web
-   url(r'^$', 'index'),
+   url(r'^$', 'html_view'),
    #pdf
-   url(r'^pdf/$', 'pdf'),
+   url(r'^pdf/$', 'pdf_view'),
 
 )

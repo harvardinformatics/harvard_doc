@@ -2,7 +2,15 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+#from admin_apps.settings import local as settings
+from tastypie.api import Api
+from api import DocumentResource, UserResource
+
 admin.autodiscover()
+
+api = Api(api_name='api')
+api.register(UserResource())
+api.register(DocumentResource())
 
 urlpatterns = patterns('',
     # Examples:
@@ -15,4 +23,5 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     (r'^harvard_doc/', include('harvard_doc.urls')),
+    (r'^a/', include(api.urls)),
 )

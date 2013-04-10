@@ -13,3 +13,5 @@ class Document(models.Model):
     def __unicode__(self):
         return self.name
         
+    def generate_pdf(self):
+        return self.url

@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% comment %}
+Home Page.
+{% endcomment %}
+
+{% block title %}
+    Bill Listing
+{% endblock %}
+
+{% block head %}
+<style type="text/css" title="currentStyle">
+  @import "/static/js/datatables/media/css/demo_page.css";
+  @import "/static/js/datatables/media/css/jquery.dataTables.css";
+</style>
+<script type="text/javascript" language="javascript" src="/static/js/datatables/media/js/jquery.js"></script>
+<script type="text/javascript" language="javascript" src="/static/js/datatables/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('#billing_record_list').dataTable( {
+        "bPaginate": false,
+        "bLengthChange": false,
+        "bFilter": true,
+        "bSort": false,
+        "bInfo": false,
+        "bAutoWidth": false
+    } );
+
+    var pdf_url = document.URL.replace("/?", "/pdf/?");
+    $('#pdf_link').attr("href", pdf_url)
+  } );
+</script>
+{% endblock %}
+
+{% block content %}
+   <h1>Bill Listing</h1>
+
+   <div class="float-right" style="margin-bottom: 1em;">
+   <a href="?month=1">Jan</a> |
+   <a href="?month=2">Feb</a> |
+   <a href="?month=3">Mar</a> |
+   <a href="?month=4">Apr</a> |
+   <a href="?month=5">May</a> |
+   <a href="?month=6">Jun</a> |
+   <a href="?month=7">Jul</a> |
+   <a href="?month=8">Aug</a> |
+   <a href="?month=9">Sep</a> |
+   <a href="?month=10">Oct</a> |
+   <a href="?month=11">Nov</a> |
+   <a href="?month=12">Dec</a> |
+   <a href="?">All</a>
+   </div>
+
+   <table id="billing_record_list">
+     <thead>
+     <tr class="header_row">
+       <th style="width: 20%;">Name</th>
+       <th>Payment Code</th>
+       <th>Amount</th>
+       <th>Date</th>
+     </tr>
+     </thead>
+
+     <tbody>
+     {% for br in brs %}
+     <tr class="br_row">
+       <td>{{ br.name }}</td>
+       <td>{{ br.payment_code }}<br /><a href="?ec_root={{ br.payment_code|slice:'34:' }}">This Root Only</a> | 
+	 <a href="?expense_code={{ br.payment_code }}">This Code Only</a></td>
+       <td>${{ br.amount }}</td>
+       <td>{{ br.bill_date|date }}</td>
+     </tr>
+     {% endfor %}
+     </tbody>
+   </table>
+
+   <a href="" id="pdf_link" class="float-right">PDF Version</a>
+
+{% endblock %}

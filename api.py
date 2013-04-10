@@ -1,10 +1,13 @@
+from django.conf.urls.defaults import *
+from django.contrib.auth.models import User
 from tastypie.resources import ModelResource
 from tastypie.constants import ALL, ALL_WITH_RELATIONS
-from django.contrib.auth.models import User
-from harvard_doc.models import Document
 from tastypie import fields
+from tastypie.utils import trailing_slash
 from tastypie.authentication import BasicAuthentication
 from tastypie.authorization import DjangoAuthorization, Authorization
+from harvard_doc.models import Document
+from harvard_doc.views import pdf_view, html_view
 
 class UserResource(ModelResource):
     class Meta:

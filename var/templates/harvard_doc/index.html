@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% comment %}
+Home Page.
+{% endcomment %}
+
+{% block title %}
+    Document Preview
+{% endblock %}
+
+{% block head %}
+<script type="text/javascript" charset="utf-8">
+    var pdf_url = document.URL.replace("/?", "/pdf/?");
+    $('#pdf_link').attr("href", pdf_url)
+  } );
+</script>
+
+<style type="text/css">
+  #header {
+    color: #fff;
+    height: 216px;
+    font-family: times, serif;
+    background: #840f25;
+  background: -moz-linear-gradient(top,  #840f25 0%, #ad0322 50%, #6d0019 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#840f25), color-stop(50%,#ad0322), color-stop(100%,#6d0019));
+  background: -webkit-linear-gradient(top,  #840f25 0%,#ad0322 50%,#6d0019 100%);
+  background: -o-linear-gradient(top,  #840f25 0%,#ad0322 50%,#6d0019 100%);
+  background: -ms-linear-gradient(top,  #840f25 0%,#ad0322 50%,#6d0019 100%);
+  background: linear-gradient(to bottom,  #840f25 0%,#ad0322 50%,#6d0019 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#840f25', endColorstr='#6d0019',GradientType=0 );
+
+  }
+  #header img {
+    float: left;
+  }
+  #header h1 {
+    font-size: 3em;
+    padding: 1em 0;
+    text-shadow: 3px 3px 10px #000000;
+    filter: dropshadow(color=#000000, offx=3, offy=3);
+  }
+  
+  #document_title {
+    display: inline;
+    float: right;
+    width: 40%;
+    text-align: right;
+    padding: 1em;
+  }
+
+  #content {
+    padding: 1em;
+  }
+  
+  #footer {
+    padding: 1em;
+    color: #ccc;
+    font-family: helvetica, sans-serif;
+    background-color: #000;
+    font-size: .8em;
+    text-align: center;
+  }
+</style>
+
+{% endblock %}
+
+{% block content %}
+   <h1>Document Preview</h1>
+
+   <div id='all'>
+     <div id="header">
+       <span id="document_title"><h3>Title of the Document</h3></span>
+       <img src="/static/Harvard_Wreath_Logo_1.png" title='Harvard University Wreath' />
+       <h1>HARVARD<br />UNIVERSITY</h1>
+     </div>
+     <div id="content">
+
+       Some Text
+
+     </div>
+     <div id="footer"> &copy; President and Fellows of Harvard University </div>
+   </div>
+          <a href="" id="pdf_link" class="float-right">PDF Version</a>
+
+
+
+
+{% endblock %}

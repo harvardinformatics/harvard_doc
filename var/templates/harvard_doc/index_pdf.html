@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% comment %}
+Home Page.
+{% endcomment %}
+
+{% block title %}
+    Bill Listing
+{% endblock %}
+
+{% block head %}
+<style type="text/css">
+  td {
+    text-align: center;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+   <h1>Bill Listing</h1>
+
+   <table id="billing_record_list">
+     <thead>
+     <tr class="header_row">
+       <th>Name</th>
+       <th>Payment Code</th>
+       <th>Amount</th>
+       <th>Date</th>
+     </tr>
+     </thead>
+
+     <tbody>
+     {% for br in brs %}
+     <tr class="br_row">
+       <td>{{ br.name }}</td>
+       <td>{{ br.payment_code }}</td>
+       <td>${{ br.amount }}</td>
+       <td>{{ br.bill_date|date }}</td>
+     </tr>
+     {% endfor %}
+     </tbody>
+   </table>
+
+{% endblock %}

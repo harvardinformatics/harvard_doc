@@ -1,0 +1,9 @@
+body {
+  font-family: verdana, sans-serif;
+  margin: 1em 10%;
+  color: #333;
+}
+
+.float-right {
+  float: right;
+}
